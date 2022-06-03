@@ -1,0 +1,6 @@
+[Unit]
+Description=Add email addresses from a Google Sheet to Action Network
+
+[Service]
+Type=oneshot
+ExecStart=%h/actionnetwork-subscribe/env/bin/python %h/actionnetwork-subscribe/subscribe.py
