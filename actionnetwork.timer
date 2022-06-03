@@ -1,8 +1,8 @@
 [Unit]
-Description=Run daily subscriber update
+Description=Run hourly subscriber update
 
 [Timer]
-OnCalendar=daily
+OnCalendar=hourly
 Persistent=true
 
 [Install]
