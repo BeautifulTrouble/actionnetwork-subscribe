@@ -1,0 +1,3 @@
+git+https://github.com/adrian-the-git/driveclient@master
+oauth2client
+requests
