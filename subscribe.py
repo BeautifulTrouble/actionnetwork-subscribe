@@ -73,7 +73,7 @@ with open(SIGN_UPS_COMPLETED, "a+") as file:
                 }
             ):
                 completed.add(email)
-        time.sleep(API_POLITENESS)
+            time.sleep(API_POLITENESS)
 
 with open(SIGN_UPS_COMPLETED, "w") as file:
     json.dump(list(completed), file)
@@ -111,4 +111,4 @@ with open(TRAINING_REQ_COMPLETED, "a+") as file:
                 data["person"]["custom_fields"] = {"organization": organization}
             if post_person(data):
                 completed.add(timestamp)
-        time.sleep(API_POLITENESS)
+            time.sleep(API_POLITENESS)
