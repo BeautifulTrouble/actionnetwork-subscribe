@@ -98,7 +98,6 @@ with open(TRAINING_REQ_COMPLETED, "a+") as file:
         lastname = g("lastname")
         email = g("email")
         organization = g("organization")
-        consent = g("consent")
         if timestamp and timestamp not in completed:
             tags = [TRAINING_REQ_TAG, SIGN_UPS_TAG] if consent else [TRAINING_REQ_TAG]
             data = {
@@ -107,7 +106,7 @@ with open(TRAINING_REQ_COMPLETED, "a+") as file:
                     "given_name": firstname,
                     "email_addresses": [{"address": email}],
                 },
-                "add_tags": tags,
+                "add_tags": [TRAINING_REQ_TAG, SIGN_UPS_TAG],
             }
             if organization:
                 data["custom_fields"] = {"organization": organization}
