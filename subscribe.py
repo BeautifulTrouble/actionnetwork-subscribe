@@ -99,7 +99,6 @@ with open(TRAINING_REQ_COMPLETED, "a+") as file:
         email = g("email")
         organization = g("organization")
         if timestamp and timestamp not in completed:
-            tags = [TRAINING_REQ_TAG, SIGN_UPS_TAG] if consent else [TRAINING_REQ_TAG]
             data = {
                 "person": {
                     "family_name": lastname,
@@ -109,7 +108,7 @@ with open(TRAINING_REQ_COMPLETED, "a+") as file:
                 "add_tags": [TRAINING_REQ_TAG, SIGN_UPS_TAG],
             }
             if organization:
-                data["custom_fields"] = {"organization": organization}
+                data["person"]["custom_fields"] = {"organization": organization}
             if post_person(data):
                 completed.add(timestamp)
         time.sleep(API_POLITENESS)
