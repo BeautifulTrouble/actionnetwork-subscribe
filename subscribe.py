@@ -112,3 +112,6 @@ with open(TRAINING_REQ_COMPLETED, "a+") as file:
             if post_person(data):
                 completed.add(timestamp)
             time.sleep(API_POLITENESS)
+
+with open(TRAINING_REQ_COMPLETED, "w") as file:
+    json.dump(list(completed), file)
