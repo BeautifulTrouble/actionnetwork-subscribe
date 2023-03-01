@@ -105,7 +105,7 @@ with open(TRAINING_REQ_COMPLETED, "a+") as file:
                     "given_name": firstname,
                     "email_addresses": [{"address": email}],
                 },
-                "add_tags": [TRAINING_REQ_TAG, SIGN_UPS_TAG],
+                "add_tags": [TRAINING_REQ_TAG],
             }
             if organization:
                 data["person"]["custom_fields"] = {"organization": organization}
@@ -115,3 +115,4 @@ with open(TRAINING_REQ_COMPLETED, "a+") as file:
 
 with open(TRAINING_REQ_COMPLETED, "w") as file:
     json.dump(list(completed), file)
+
