@@ -1,5 +1,5 @@
 *.pyc
 *.pyo
-subscribed.json
+*.json
 __pycache__/
 env/

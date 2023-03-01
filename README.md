@@ -1,6 +1,6 @@
 # Simple ActionNetwork integration
 
-Update ActionNetwork subscriptions hourly using list in a Google sheet.
+Update ActionNetwork subscriptions hourly using lists in a Google sheet.
 
 ## Install
 
