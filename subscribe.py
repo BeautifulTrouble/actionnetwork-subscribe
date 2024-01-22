@@ -49,7 +49,6 @@ def task(name):
 
 
 def post_person(data: dict) -> bool:
-    return True
     r = requests.post(
         "https://actionnetwork.org/api/v2/people/",
         headers={
