@@ -23,7 +23,7 @@ from squarespace import API_KEY as API_KEY_SQUARESPACE
 
 ORDERS_INTERVAL_HOURS = 2
 ORDERS_COMPLETED = "ss_orders.json"
-ORDERS_TAG = "Squarespace Order / Digital Download"
+ORDERS_TAG = "Merch Buyers"
 
 SIGN_UPS_FOOTER = "1MJ3d7Tp4lEm26d6LLiQY0iHapiI1xuX2UwYuLXp93Gk"
 SIGN_UPS_POPUP = "1ZPrX5DifbrKkoIKI0xOpg10dWFkCc5xO15RQ-iHvqSs"
@@ -32,7 +32,7 @@ SIGN_UPS_TAG = "Sign Ups"
 
 TRAINING_REQ = "1Nl7NbQ-x4VkisH4wTniv9GMP0F35r_1SFXlayhqixMo"
 TRAINING_REQ_COMPLETED = "training_req.json"
-TRAINING_REQ_TAG = "Training Req"
+TRAINING_REQ_TAG = "Training"
 
 CREDENTIALS = "beautifultrouble-2093eac4dc47.json"
 API_POLITENESS = 0.2
@@ -113,7 +113,7 @@ with task("Add squarespace order emails to AN"):
                             "given_name": firstname,
                             "email_addresses": [{"address": email}],
                         },
-                        "add_tags": [ORDERS_TAG],
+                        "add_tags": [SIGN_UPS_TAG, ORDERS_TAG],
                     }
                     if post_person(data):
                         completed.add(email)
@@ -187,7 +187,7 @@ with task("Add training request emails to AN"):
                         "given_name": firstname,
                         "email_addresses": [{"address": email}],
                     },
-                    "add_tags": [TRAINING_REQ_TAG],
+                    "add_tags": [TRAINING_REQ_TAG, SIGN_UPS_TAG],
                 }
                 if organization:
                     data["person"]["custom_fields"] = {"organization": organization}
