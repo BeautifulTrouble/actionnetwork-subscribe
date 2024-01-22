@@ -25,7 +25,8 @@ ORDERS_INTERVAL_HOURS = 2
 ORDERS_COMPLETED = "ss_orders.json"
 ORDERS_TAG = "Squarespace Order / Digital Download"
 
-SIGN_UPS = "1ZWkAEca3GR7gwKazT3F_8iEK6fSgoSf8gEHCp5_B0Ug"
+SIGN_UPS_FOOTER = "1MJ3d7Tp4lEm26d6LLiQY0iHapiI1xuX2UwYuLXp93Gk"
+SIGN_UPS_POPUP = "1ZPrX5DifbrKkoIKI0xOpg10dWFkCc5xO15RQ-iHvqSs"
 SIGN_UPS_COMPLETED = "sign_ups.json"
 SIGN_UPS_TAG = "Sign Ups"
 
@@ -48,6 +49,7 @@ def task(name):
 
 
 def post_person(data: dict) -> bool:
+    return True
     r = requests.post(
         "https://actionnetwork.org/api/v2/people/",
         headers={
@@ -128,31 +130,32 @@ with task("Add squarespace order emails to AN"):
 
 
 with task("Add squarespace signups to AN"):
-    reader = drive.get(SIGN_UPS).csv
-    next(reader)
+    for file in [SIGN_UPS_FOOTER, SIGN_UPS_POPUP]:
+        reader = drive.get(file).csv
+        next(reader)
 
-    with open(SIGN_UPS_COMPLETED, "a+") as file:
-        file.seek(0)
-        try:
-            completed = set(json.load(file))
-        except json.JSONDecodeError:
-            logging.warning("Completion cache is empty. Adding ALL entries...")
-            completed = set()
-        for timestamp, email, *_ in reader:
-            if email not in completed:
-                if post_person(
-                    {
-                        "person": {
-                            "email_addresses": [{"address": email}],
-                        },
-                        "add_tags": [SIGN_UPS_TAG],
-                    }
-                ):
-                    completed.add(email)
-                time.sleep(API_POLITENESS)
+        with open(SIGN_UPS_COMPLETED, "a+") as file:
+            file.seek(0)
+            try:
+                completed = set(json.load(file))
+            except json.JSONDecodeError:
+                logging.warning("Completion cache is empty. Adding ALL entries...")
+                completed = set()
+            for timestamp, email, *_ in reader:
+                if email not in completed:
+                    if post_person(
+                        {
+                            "person": {
+                                "email_addresses": [{"address": email}],
+                            },
+                            "add_tags": [SIGN_UPS_TAG],
+                        }
+                    ):
+                        completed.add(email)
+                    time.sleep(API_POLITENESS)
 
-    with open(SIGN_UPS_COMPLETED, "w") as file:
-        json.dump(list(completed), file)
+        with open(SIGN_UPS_COMPLETED, "w") as file:
+            json.dump(list(completed), file)
 
 
 # ------------------------------------------------------------------------------------------------
