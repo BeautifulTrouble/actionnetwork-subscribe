@@ -34,7 +34,7 @@ TRAINING_REQ = "1Nl7NbQ-x4VkisH4wTniv9GMP0F35r_1SFXlayhqixMo"
 TRAINING_REQ_COMPLETED = "training_req.json"
 TRAINING_REQ_TAG = "Training"
 
-CREDENTIALS = "beautifultrouble-2093eac4dc47.json"
+CREDENTIALS = "automation-assistant.json"
 API_POLITENESS = 0.2
 
 
